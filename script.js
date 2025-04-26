@@ -58,7 +58,9 @@ function createCard(post) {
 async function fetchPosts() {
   // 백엔드 API에서 전체 방명록 목록을 불러와서 화면에 렌더링하기
   try {
-    const res = await fetch("http://43.202.120.161:8000/guestbook/");
+    const res = await fetch(
+      "https://proxy-server-t2pq.onrender.com/guestbook/"
+    );
     const json = await res.json();
     json.data.forEach((post) => createCard(post));
   } catch (err) {
@@ -85,13 +87,16 @@ async function submitPost() {
   const payload = { title, writer, content, password }; // 서버에 전송할 JSON 데이터 객체로 만들기
 
   try {
-    const res = await fetch("http://43.202.120.161:8000/guestbook/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    const res = await fetch(
+      "https://proxy-server-t2pq.onrender.com/guestbook/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
 
     const json = await res.json(); // 서버에서 응답 온 값을 json 형태로 변환
     if (json.status === 200) {
@@ -113,7 +118,7 @@ async function confirmDelete() {
 
   try {
     const res = await fetch(
-      `http://43.202.120.161:8000/guestbook/${deleteTargetId}/`,
+      `https://proxy-server-t2pq.onrender.com/guestbook/${deleteTargetId}/`,
       {
         method: "DELETE",
         headers: {
