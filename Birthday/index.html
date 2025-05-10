@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>대한아, 생일 축하해! 🎉</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: linear-gradient(to right, #ffe4e1, #ffccf9);
+        font-family: "Segoe UI", sans-serif;
+        text-align: center;
+      }
+
+      .container {
+        position: relative;
+        z-index: 2;
+        padding-top: 100px;
+      }
+
+      h1 {
+        font-size: 3em;
+        color: #ff4081;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.5em;
+        color: #333;
+        animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid #ff4081;
+        width: 0;
+        margin: 0 auto;
+        animation-fill-mode: forwards;
+      }
+
+      img {
+        max-width: 300px;
+        margin: 30px 0;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      button {
+        background-color: #ff4081;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #e91e63;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 80%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #ff4081;
+        }
+      }
+
+      /* 하트 애니메이션 */
+      .heart {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: red;
+        transform: rotate(45deg);
+        top: 100%;
+        animation: float 8s linear infinite;
+        z-index: 0;
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 50%;
+      }
+
+      .heart::before {
+        top: -10px;
+        left: 0;
+      }
+
+      .heart::after {
+        left: -10px;
+        top: 0;
+      }
+
+      @keyframes float {
+        0% {
+          top: 100%;
+          opacity: 1;
+        }
+        100% {
+          top: -10%;
+          opacity: 0;
+        }
+      }
+
+      /* 풍선 효과 */
+      .balloon {
+        position: fixed;
+        width: 30px;
+        height: 40px;
+        background: pink;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        animation: rise 10s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes rise {
+        0% {
+          bottom: -50px;
+          opacity: 0;
+        }
+        100% {
+          bottom: 110%;
+          opacity: 1;
+        }
+      }
+
+      /* 별똥별 효과 */
+      .star {
+        position: fixed;
+        width: 2px;
+        height: 100px;
+        background: white;
+        opacity: 0.5;
+        transform: rotate(45deg);
+        animation: shoot 3s linear infinite;
+      }
+
+      @keyframes shoot {
+        0% {
+          top: -100px;
+          left: 100%;
+        }
+        100% {
+          top: 100%;
+          left: -100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎂 대한아, 생일 축하해! 🎂</h1>
+      <p>누리울림 기타 최고 아웃풋 강대한 🎸</p>
+      <img
+        src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+        alt="생일 축하"
+      />
+      <br />
+      <button onclick="showMessage()">눌러봐!</button>
+      <audio
+        id="bgm"
+        src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3"
+        preload="auto"
+      ></audio>
+    </div>
+
+    <script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 8000);
+      }
+
+      function createBalloon() {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`;
+        balloon.style.animationDuration = 5 + Math.random() * 5 + "s";
+        document.body.appendChild(balloon);
+
+        setTimeout(() => balloon.remove(), 10000);
+      }
+
+      function createStar() {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(star);
+
+        setTimeout(() => star.remove(), 3000);
+      }
+
+      setInterval(createHeart, 300);
+      setInterval(createBalloon, 1000);
+      setInterval(createStar, 2000);
+
+      function showMessage() {
+        alert("✨ 내년에도 기타장 해야지? 🎉");
+        document.getElementById("bgm").play();
+      }
+    </script>
+  </body>
+</html>
